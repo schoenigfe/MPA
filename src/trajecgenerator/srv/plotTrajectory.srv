@@ -1,0 +1,7 @@
+string title
+float32 maxT
+float32 dT
+float32 k
+float32[2] xrange
+float32[2] yrange
+---

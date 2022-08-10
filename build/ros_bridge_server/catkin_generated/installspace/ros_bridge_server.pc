@@ -1,0 +1,8 @@
+prefix=/home/jansimon/catkin_ws/src/Roboterformation_ROS/install
+
+Name: ros_bridge_server
+Description: Description of ros_bridge_server
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: trajecgenerator

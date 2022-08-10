@@ -1,0 +1,23 @@
+
+(cl:in-package :asdf)
+
+(defsystem "trajecgenerator-srv"
+  :depends-on (:roslisp-msg-protocol :roslisp-utils )
+  :components ((:file "_package")
+    (:file "addCSplineTrajecHandler" :depends-on ("_package_addCSplineTrajecHandler"))
+    (:file "_package_addCSplineTrajecHandler" :depends-on ("_package"))
+    (:file "addCircleTrajecHandler" :depends-on ("_package_addCircleTrajecHandler"))
+    (:file "_package_addCircleTrajecHandler" :depends-on ("_package"))
+    (:file "addCrSplineTrajecHandler" :depends-on ("_package_addCrSplineTrajecHandler"))
+    (:file "_package_addCrSplineTrajecHandler" :depends-on ("_package"))
+    (:file "boolRequest" :depends-on ("_package_boolRequest"))
+    (:file "_package_boolRequest" :depends-on ("_package"))
+    (:file "float32Request" :depends-on ("_package_float32Request"))
+    (:file "_package_float32Request" :depends-on ("_package"))
+    (:file "plotTrajecXoY" :depends-on ("_package_plotTrajecXoY"))
+    (:file "_package_plotTrajecXoY" :depends-on ("_package"))
+    (:file "plotTrajectory" :depends-on ("_package_plotTrajectory"))
+    (:file "_package_plotTrajectory" :depends-on ("_package"))
+    (:file "removeTrajecHandler" :depends-on ("_package_removeTrajecHandler"))
+    (:file "_package_removeTrajecHandler" :depends-on ("_package"))
+  ))

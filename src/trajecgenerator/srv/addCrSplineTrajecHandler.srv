@@ -1,0 +1,7 @@
+string name
+float32[] pointsX
+float32[] pointsY
+bool closed
+float32 time
+float32 k
+---

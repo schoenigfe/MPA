@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/jansimon/catkin_ws/src/Roboterformation_ROS/install/setup.sh

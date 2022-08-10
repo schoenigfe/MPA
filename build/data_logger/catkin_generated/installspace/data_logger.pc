@@ -1,0 +1,8 @@
+prefix=/home/jansimon/catkin_ws/src/Roboterformation_ROS/install
+
+Name: data_logger
+Description: Description of data_logger
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

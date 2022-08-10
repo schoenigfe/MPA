@@ -1,0 +1,9 @@
+string name
+float32[] pointsX
+float32[] pointsY
+float32[] T
+uint8 type  #  0: cspline, 1: cspline_hermite, 2: linear
+bool closed
+float32 time
+float32 k
+---
