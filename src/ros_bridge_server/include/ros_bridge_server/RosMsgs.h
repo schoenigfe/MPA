@@ -109,15 +109,25 @@ namespace ros_msgs
             static size_t const _msg_size;
     };
     
-  struct IMU : public sensor_msgs::IMU, public geometry_msgs::Quaternion
+ struct Imu : public sensor_msgs::Imu, public geometry_msgs::Quaternion
   {   
         public:
-            IMU(double new_quaternion_orientation_x, double new_quaternion_orientation_y, double new_quaternion_orientation_z, double new_quaternion_orientation_w, double new_angular_velocity_x, double new_angular_velocity_y, double new_angular_velocity_z, double new_linear_acceleration_x, double new_linear_acceleration_y, double new_linear_acceleration_z) : sensor_msgs::IMU()
+            Imu(double new_quaternion_orientation_x, double new_quaternion_orientation_y, double new_quaternion_orientation_z, double new_quaternion_orientation_w, double new_angular_velocity_x, double new_angular_velocity_y, double new_angular_velocity_z, double new_linear_acceleration_x, double new_linear_acceleration_y, double new_linear_acceleration_z) : sensor_msgs::Imu()
             {   
                 quaternion.x = new_quaternion_orientation_x;
+                quaternion.y = new_quaternion_orientation_y;
+                quaternion.z = new_quaternion_orientation_z;
+                quaternion.w = new_quaternion_orientation_w;
+                angular_velocity.x = new_angular_velocity_x;
+                angular_velocity.y = new_angular_velocity_y;
+                angular_velocity.z = new_angular_velocity_z;
+                linear_acceleration.x = new_linear_acceleration_x;
+                linear_acceleration.y = new_linear_acceleration_y;
+                linear_acceleration.z = new_linear_acceleration_z;
+                
             }
-            IMU() : sensor_msgs::IMU() {}
-            IMU(sensor_msgs::IMU imu) : sensor_msgs::IMU(imu) {} 
+            Imu() : sensor_msgs::Imu() {}
+            Imu(sensor_msgs::Imu imu) : sensor_msgs::Imu(imu) {} 
 
             size_t getSize() const  
             { 
@@ -131,7 +141,16 @@ namespace ros_msgs
                 double* buff = (double*)buffer;
                 
                 buff[0] =  quaternion.x;
-                
+                buff[1] =  quaternion.y;
+                buff[2] =  quaternion.z;
+                buff[3] =  quaternion.w;
+                buff[4] = angular_velocity.x;
+                buff[5] = angular_velocity.y;
+                buff[6] = angular_velocity.z;
+                buff[7] = linear_acceleration.x;
+                buff[8] = linear_acceleration.y;
+                buff[9] = linear_acceleration.z;
+                            
             }
 
             void deserialize(uint8_t* buffer) 
@@ -139,102 +158,26 @@ namespace ros_msgs
                 double* buff = (double*)buffer;
                 
                quaternion.x = buff[0];
+               quaternion.x = buff[1];
+               quaternion.x = buff[2];
+               quaternion.x = buff[3];
+               angular_velocity.x = buff[4];
+               angular_velocity.y = buff[5];
+               angular_velocity.z = buff[6];
+               linear_acceleration.x = buff[7];
+               linear_acceleration.y = buff[8];
+               linear_acceleration.z = buff[9];
+               
+               
             }
 
         private:
             static size_t const _msg_size;
             geometry_msgs::Quaternion quaternion;
+            geometry_msgs::Vector3 angular_velocity;
+            geometry_msgs::Vector3 linear_acceleration;
+            
     };
-
-/*
-    struct IMU
-    {   
-        public:
-            /*
-            explicit Pose2D(double x, double y, double theta) : x{x}, y{y}, theta{theta} 
-            {
-                //Keep theta between -pi and pi
-                theta = atan2(sin(theta), cos(theta));
-            }
-            */
-            /*
-            explicit Pose2D(ros_msgs::Pose2DSim const& pose) : x{pose.y}, y{pose.y}, theta{pose.theta} {}
-            
-            //explicit IMU(ros_msgs_lw::IMU const& imu);
-            
-            
-            IMU() : angular_velocity_x{0}, angular_velocity_y{0}, angular_velocity_z{0}, linear_acceleration_x{0}, linear_acceleration_y{0}, linear_acceleration_z{0}{}
-            
-            size_t getSize() const 
-            { 
-                return _msg_size; 
-            }
-            
-            void allocateMemory(int32_t msg_len) {}
-
-            static std::string getMsgType()
-            {
-                return "custom/IMU";
-            }
-
-            void serialize(uint8_t* buffer) const
-            { 
-                float* buff = (float*)buffer;
-                buff[0] = angular_velocity_x;
-                buff[1] = angular_velocity_y;
-                buff[2] = angular_velocity_z;
-                buff[3] = linear_acceleration_x;
-                buff[4] = linear_acceleration_y;
-                buff[5] = linear_acceleration_z;
-            }
-
-            void deserialize(uint8_t* buffer)
-            {
-                float* buff = (float*)buffer;
-
-                angular_velocity_x = buff[0];
-                angular_velocity_y = buff[1];
-                angular_velocity_z = buff[2];
-                linear_acceleration_x = buff[3];
-                linear_acceleration_y = buff[4];
-                linear_acceleration_z = buff[5];
-            }
-            
-           /* void operator=(Pose2D const& pose)
-            {
-                x = pose.x;
-                y = pose.y;
-                theta = pose.theta;
-
-                //Keep theta between -pi and pi
-                theta = atan2(sin(theta), cos(theta));
-            }
-            */
-            /*
-            void operator=(Pose2DSim const& pose)
-            {
-                x = pose.x;
-                y = pose.y;
-                theta = pose.theta;
-
-                //Keep theta between -pi and pi
-                theta = atan2(sin(theta), cos(theta));
-            }
-            
-            float angular_velocity_x;
-            float angular_velocity_y;
-            float angular_velocity_z;
-            float linear_acceleration_x;
-            float linear_acceleration_y;
-            float linear_acceleration_z;
-
-        private:
-            static size_t const _msg_size;
-    };
-*/
-
-
-
 
     struct Point2D : public geometry_msgs::Point
     {   
