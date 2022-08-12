@@ -1,8 +1,0 @@
-prefix=/home/jansimon/catkin_ws/src/Roboterformation_ROS/devel
-
-Name: trajecgenerator
-Description: Description of trajecgenerator
-Version: 0.0.0
-Cflags: -I/home/jansimon/catkin_ws/src/Roboterformation_ROS/devel/include
-Libs: -L${prefix}/lib 
-Requires: roscpp std_msgs
