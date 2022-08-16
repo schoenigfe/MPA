@@ -275,6 +275,8 @@ void CommunicationHandler::_subscribe(std::string const& topic, std::string cons
         new_sub->subscribe<trajecgenerator::c_trajec_vector, ros_msgs::Trajectory>(topic, _node_handle);
     else if(message_type == "sensor_msgs/Imu")
         new_sub->subscribe<sensor_msgs::Imu, ros_msgs::Imu>(topic, _node_handle);
+    else if(message_type == "sensor_msgs/Qual")
+        new_sub->subscribe<std_msgs::Int32, ros_msgs::Qual>(topic, _node_handle);
     else
     {
         delete new_sub;

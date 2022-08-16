@@ -2,6 +2,7 @@
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "std_msgs/Int32.h"
 #include "geometry_msgs/Pose2D.h"
 #include "geometry_msgs/Point.h"
 #include "geometry_msgs/Twist.h"
@@ -106,6 +107,42 @@ namespace ros_msgs
             }
 
         private:
+            static size_t const _msg_size;
+    }; 
+    
+    struct Qual : public std_msgs::Int32
+    {   
+        public:
+            Qual(int new_qual) :  std_msgs::Int32()
+            {
+                qual = new_qual;
+            }
+            Qual(std_msgs::Int32) {}
+            //Qual(std_msgs::Int32 qual) : std_msgs::Int32(qual) {} 
+
+            size_t getSize() const  
+            { 
+                return _msg_size; 
+            }
+
+            void allocateMemory(int32_t msg_len) {} 
+
+            void serialize(uint8_t* buffer) const 
+            { 
+                double* buff = (double*)buffer;
+                
+                buff[0] = qual;
+            }
+
+            void deserialize(uint8_t* buffer) 
+            {   
+                double* buff = (double*)buffer;
+
+                qual = buff[0];
+            }
+
+        private:
+			int qual;
             static size_t const _msg_size;
     };
     

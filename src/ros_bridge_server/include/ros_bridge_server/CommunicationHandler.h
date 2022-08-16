@@ -12,6 +12,7 @@
 
 #include "ros/ros.h"
 #include "geometry_msgs/Pose2D.h"
+#include "std_msgs/Int32.h"
 #include "turtlesim/Pose.h"
 
 /**
