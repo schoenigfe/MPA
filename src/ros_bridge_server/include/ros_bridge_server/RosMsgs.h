@@ -115,10 +115,10 @@ namespace ros_msgs
         public:
             Qual(int new_qual) :  std_msgs::Int32()
             {
-                qual = new_qual;
+                data = new_qual;
             }
-            Qual(std_msgs::Int32) {}
-            //Qual(std_msgs::Int32 qual) : std_msgs::Int32(qual) {} 
+            Qual() : std_msgs::Int32() {}
+            Qual(std_msgs::Int32 qual) : std_msgs::Int32(qual) {} 
 
             size_t getSize() const  
             { 
@@ -129,20 +129,19 @@ namespace ros_msgs
 
             void serialize(uint8_t* buffer) const 
             { 
-                double* buff = (double*)buffer;
+                uint* buff = (uint*)buffer;
                 
-                buff[0] = qual;
+                buff[0] = data;
             }
 
-            void deserialize(uint8_t* buffer) 
+            void deserialize(uint32_t* buffer) 
             {   
-                double* buff = (double*)buffer;
+                uint* buff = (uint*)buffer;
 
-                qual = buff[0];
+                data = buff[0];
             }
 
         private:
-			int qual;
             static size_t const _msg_size;
     };
     
