@@ -3,6 +3,7 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "std_msgs/Int32.h"
+#include "std_msgs/UInt8.h"
 #include "geometry_msgs/Pose2D.h"
 #include "geometry_msgs/Point.h"
 #include "geometry_msgs/Twist.h"
@@ -110,37 +111,34 @@ namespace ros_msgs
             static size_t const _msg_size;
     }; 
     
-    struct Qual : public std_msgs::Int32
+    struct Qual : public std_msgs::UInt8
     {   
         public:
-            Qual(int new_qual) :  std_msgs::Int32()
+            Qual(uint8_t new_qual) :  std_msgs::UInt8()
             {
+                printf("-------------%d\n", data);
                 data = new_qual;
             }
-            Qual() : std_msgs::Int32() {}
-            Qual(std_msgs::Int32 qual) : std_msgs::Int32(qual) {} 
+            Qual() : std_msgs::UInt8() {}
+            Qual(std_msgs::UInt8 qual) : std_msgs::UInt8(qual) {} 
 
             size_t getSize() const  
             { 
                 return _msg_size; 
             }
-
             void allocateMemory(int32_t msg_len) {} 
-
             void serialize(uint8_t* buffer) const 
             { 
-                uint* buff = (uint*)buffer;
-                
+                uint8_t* buff = (uint8_t*)buffer;                
                 buff[0] = data;
             }
-
-            void deserialize(uint32_t* buffer) 
+            void deserialize(uint8_t* buffer) 
             {   
-                uint* buff = (uint*)buffer;
-
+                uint8_t* buff = (uint8_t*)buffer;
                 data = buff[0];
+                printf("-------------%d\n", buffer[0]);
+                printf("-------------%d\n", data);
             }
-
         private:
             static size_t const _msg_size;
     };
