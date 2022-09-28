@@ -2,13 +2,12 @@
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-#include "std_msgs/Int32.h"
 #include "std_msgs/UInt8.h"
 #include "geometry_msgs/Pose2D.h"
 #include "geometry_msgs/Point.h"
 #include "geometry_msgs/Twist.h"
 #include "geometry_msgs/Quaternion.h"
-#include "sensor_msgs/Imu.h"
+//#include "sensor_msgs/Imu.h"
 #include "turtlesim/Pose.h"
 #include "trajecgenerator/c_trajec_vector.h"
 
@@ -143,25 +142,17 @@ namespace ros_msgs
             static size_t const _msg_size;
     };
     
- struct Imu : public sensor_msgs::Imu, public geometry_msgs::Quaternion
-  {   
+ struct Imu : public geometry_msgs::Pose2D
+    {   
         public:
-            Imu(double new_quaternion_orientation_x, double new_quaternion_orientation_y, double new_quaternion_orientation_z, double new_quaternion_orientation_w, double new_angular_velocity_x, double new_angular_velocity_y, double new_angular_velocity_z, double new_linear_acceleration_x, double new_linear_acceleration_y, double new_linear_acceleration_z) : sensor_msgs::Imu()
-            {   
-                quaternion.x = new_quaternion_orientation_x;
-                quaternion.y = new_quaternion_orientation_y;
-                quaternion.z = new_quaternion_orientation_z;
-                quaternion.w = new_quaternion_orientation_w;
-                angular_velocity.x = new_angular_velocity_x;
-                angular_velocity.y = new_angular_velocity_y;
-                angular_velocity.z = new_angular_velocity_z;
-                linear_acceleration.x = new_linear_acceleration_x;
-                linear_acceleration.y = new_linear_acceleration_y;
-                linear_acceleration.z = new_linear_acceleration_z;
-                
+            Imu(double new_x, double new_y, double new_theta) : geometry_msgs::Pose2D()
+            {
+                x = new_x;
+                y = new_y;
+                theta = new_theta;
             }
-            Imu() : sensor_msgs::Imu() {}
-            Imu(sensor_msgs::Imu imu) : sensor_msgs::Imu(imu) {} 
+            Imu() : geometry_msgs::Pose2D() {}
+            Imu(geometry_msgs::Pose2D pose) : geometry_msgs::Pose2D(pose) {} 
 
             size_t getSize() const  
             { 
@@ -174,44 +165,23 @@ namespace ros_msgs
             { 
                 double* buff = (double*)buffer;
                 
-                buff[0] =  quaternion.x;
-                buff[1] =  quaternion.y;
-                buff[2] =  quaternion.z;
-                buff[3] =  quaternion.w;
-                buff[4] = angular_velocity.x;
-                buff[5] = angular_velocity.y;
-                buff[6] = angular_velocity.z;
-                buff[7] = linear_acceleration.x;
-                buff[8] = linear_acceleration.y;
-                buff[9] = linear_acceleration.z;
-                            
+                buff[0] = x;
+                buff[1] = y;
+                buff[2] = theta;
             }
 
             void deserialize(uint8_t* buffer) 
             {   
                 double* buff = (double*)buffer;
-                
-               quaternion.x = buff[0];
-               quaternion.x = buff[1];
-               quaternion.x = buff[2];
-               quaternion.x = buff[3];
-               angular_velocity.x = buff[4];
-               angular_velocity.y = buff[5];
-               angular_velocity.z = buff[6];
-               linear_acceleration.x = buff[7];
-               linear_acceleration.y = buff[8];
-               linear_acceleration.z = buff[9];
-               
-               
+
+                x = buff[0];
+                y = buff[1];
+                theta = buff[2];
             }
 
         private:
             static size_t const _msg_size;
-            geometry_msgs::Quaternion quaternion;
-            geometry_msgs::Vector3 angular_velocity;
-            geometry_msgs::Vector3 linear_acceleration;
-            
-    };
+    }; 
 
     struct Point2D : public geometry_msgs::Point
     {   

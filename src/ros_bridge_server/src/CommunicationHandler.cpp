@@ -252,7 +252,7 @@ void CommunicationHandler::_advertise(std::string const& topic, std::string cons
     else if (message_type == "trajecgenerator/c_trajec_vector")
         new_pub = new PublisherImpl<trajecgenerator::c_trajec_vector, ros_msgs::Trajectory>(*_node_handle, topic, _sock); 
     else if (message_type == "sensor_msgs/Imu")
-        new_pub = new PublisherImpl<sensor_msgs::Imu, ros_msgs::Imu>(*_node_handle, topic, _sock);
+        new_pub = new PublisherImpl<geometry_msgs::Pose2D, ros_msgs::Imu>(*_node_handle, topic, _sock);
      else if (message_type == "std_msgs/UInt8")
         new_pub = new PublisherImpl<std_msgs::UInt8, ros_msgs::Qual>(*_node_handle, topic, _sock);
     if(new_pub != nullptr)
@@ -276,8 +276,8 @@ void CommunicationHandler::_subscribe(std::string const& topic, std::string cons
     else if(message_type == "trajecgenerator/c_trajec_vector")
         new_sub->subscribe<trajecgenerator::c_trajec_vector, ros_msgs::Trajectory>(topic, _node_handle);
     else if(message_type == "sensor_msgs/Imu")
-        new_sub->subscribe<sensor_msgs::Imu, ros_msgs::Imu>(topic, _node_handle);
-    else if(message_type == "sensor_msgs/Qual")
+        new_sub->subscribe<geometry_msgs::Pose2D, ros_msgs::Imu>(topic, _node_handle);
+    else if(message_type == "std_msgs/Qual")
         new_sub->subscribe<std_msgs::UInt8, ros_msgs::Qual>(topic, _node_handle);
     else
     {
@@ -288,4 +288,3 @@ void CommunicationHandler::_subscribe(std::string const& topic, std::string cons
     if(new_sub != nullptr)
         _subscriber.push_back(new_sub);
 }
-
